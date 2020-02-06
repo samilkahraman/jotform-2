@@ -7,7 +7,6 @@
 export const GetFormSubmissions = (apiKey, formId) => {
     const url =
       "https://api.jotform.com/form/" + formId + "/submissions?apiKey=" + apiKey + "";
-  
+
     return fetch(url);
   };
-  
