@@ -1,5 +1,9 @@
-/*eslint-disable*/
+// #region
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import PropTypes from 'prop-types';
+
 // nodejs library that concatenates classes
 import classNames from 'classnames';
 // @material-ui/core components
@@ -17,18 +21,19 @@ import GridItem from 'components/Grid/GridItem.js';
 import Button from 'components/CustomButtons/Button.js';
 
 import productStyle from 'assets/jss/material-kit-pro-react/views/productStyle.js';
-// Sub components
-import ProductServices from './Components/ProductServices';
 
 // images
+import parallaxImage from 'assets/img/bg6.jpg';
+
+// Sub components
+import ProductServices from './Components/ProductServices';
 import ProductDetail from './Components/ProductDetail';
 import RelatedProducts from './Components/RelatedProducts';
-
+// #endregion
 const useStyles = makeStyles(productStyle);
 
 export default function ProductDetailPage(props) {
   const { formData } = props.location;
-  console.log(formData);
 
   const classes = useStyles();
 
@@ -44,7 +49,7 @@ export default function ProductDetailPage(props) {
           color: 'info'
         }}
       />
-      <Parallax image={require('assets/img/bg6.jpg')} filter="info" className={classes.pageHeader}>
+      <Parallax image={parallaxImage} filter="info" className={classes.pageHeader}>
         <div className={classes.container}>
           <GridContainer className={classes.titleRow}>
             <GridItem md={4} className={classes.mlAuto}>
@@ -67,3 +72,7 @@ export default function ProductDetailPage(props) {
     </div>
   );
 }
+
+ProductDetailPage.propTypes = {
+  formData: PropTypes.object.isRequired
+};
