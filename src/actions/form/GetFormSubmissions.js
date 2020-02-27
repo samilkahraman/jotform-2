@@ -5,8 +5,7 @@
  * @return promise - it uses fetch for requests and returns a promise
  */
 export const GetFormSubmissions = (apiKey, formId) => {
-    const url =
-      "https://api.jotform.com/form/" + formId + "/submissions?apiKey=" + apiKey + "";
+  const url = 'https://api.jotform.com/form/' + formId + '/submissions?apiKey=' + apiKey + '';
 
-    return fetch(url);
-  };
+  return fetch(url);
+};
