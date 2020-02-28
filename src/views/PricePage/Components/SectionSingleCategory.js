@@ -16,6 +16,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import MenuItem from '@material-ui/core/MenuItem';
+import Warning from 'components/Typography/Warning.js';
+
 import Icon from '@material-ui/core/Icon';
 // @material-ui/icons
 import Close from '@material-ui/icons/Close';
@@ -24,6 +27,13 @@ import Timeline from '@material-ui/icons/Timeline';
 import Code from '@material-ui/icons/Code';
 import Group from '@material-ui/icons/Group';
 import Email from '@material-ui/icons/Email';
+import TrendingDown from '@material-ui/icons/TrendingDown';
+import Equalizer from '@material-ui/icons/Equalizer';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import ArrowForward from '@material-ui/icons/ArrowForward';
+import color1 from 'assets/img/examples/color1.jpg';
+import CardHeader from 'components/Card/CardHeader.js';
+
 import Check from '@material-ui/icons/Check';
 // core components
 import GridContainer from 'components/Grid/GridContainer.js';
@@ -32,6 +42,15 @@ import Button from 'components/CustomButtons/Button.js';
 import CustomInput from 'components/CustomInput/CustomInput.js';
 import InfoArea from 'components/InfoArea/InfoArea.js';
 import { whiteColor } from 'assets/jss/material-kit-pro-react';
+import CustomDropdown from 'components/CustomDropdown/CustomDropdown.js';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Radio from '@material-ui/core/Radio';
+import Switch from '@material-ui/core/Switch';
+import FiberManualRecord from '@material-ui/icons/FiberManualRecord';
+import PriceDetail from './PriceDetailPage';
+
 // import { BrowserRouter as Link } from "react-router-dom";
 
 const useStyles = makeStyles(javascriptStyles);
@@ -42,11 +61,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function SectionCategories(props) {
   const { wood } = props;
-  let currentPrice = 100;
+  const [currentPrice, setCurrentPrice] = useState(100);
   console.log(wood);
   const [notClicked, setNotClicked] = useState(true);
-  const classes = useStyles();
+  const [simpleSelect, setSimpleSelect] = React.useState('');
+  const [selectedEnabled, setSelectedEnabled] = React.useState('b');
 
+  const classes = useStyles();
+  const handleSimple = event => {
+    setSimpleSelect(event.target.value);
+  };
   return (
     <>
       {notClicked ? (
@@ -72,11 +96,6 @@ export default function SectionCategories(props) {
         </GridItem>
       ) : (
         <GridItem xs={12} sm={6} md={6} lg={6}>
-          {/* BUTTON SIGNUP MODAL      <Button block round onClick={() => setSignupModal(true)}>
-          <Assignment /> Signup
-        </Button> */}
-
-          {/* SIGNUP MODAL START */}
           <Dialog
             classes={{
               root: classes.modalRoot,
@@ -154,97 +173,259 @@ export default function SectionCategories(props) {
                   </GridItem>
                   <GridItem xs={12} sm={5} md={5} className={classes.mrAuto}>
                     <div className={classes.textCenter}>
-                      <Button justIcon round color="twitter">
-                        <i className="fab fa-twitter" />
-                      </Button>
                       {` `}
-                      <Button justIcon round color="dribbble">
-                        <i className="fab fa-dribbble" />
-                      </Button>
-                      {` `}
-                      <Button justIcon round color="facebook">
-                        <i className="fab fa-facebook-f" />
-                      </Button>
-                      {` `}
-                      <h4 className={classes.socialTitle}>or be classical</h4>
+                      <br />
+                      <h4 className={classes.socialTitle}>Panel ile ilgili detayları giriniz!</h4>
                     </div>
                     <form className={classes.form}>
-                      <CustomInput
-                        formControlProps={{
-                          fullWidth: true,
-                          className: classes.customFormControlClasses
-                        }}
-                        inputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start" className={classes.inputAdornment}>
-                              <Face className={classes.inputAdornmentIcon} />
-                            </InputAdornment>
-                          ),
-                          placeholder: 'First Name...'
-                        }}
-                      />
-                      <CustomInput
-                        formControlProps={{
-                          fullWidth: true,
-                          className: classes.customFormControlClasses
-                        }}
-                        inputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start" className={classes.inputAdornment}>
-                              <Email className={classes.inputAdornmentIcon} />
-                            </InputAdornment>
-                          ),
-                          placeholder: 'Email...'
-                        }}
-                      />
-                      <CustomInput
-                        formControlProps={{
-                          fullWidth: true,
-                          className: classes.customFormControlClasses
-                        }}
-                        inputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start" className={classes.inputAdornment}>
-                              <Icon className={classes.inputAdornmentIcon}>lock_outline</Icon>
-                            </InputAdornment>
-                          ),
-                          placeholder: 'Password...'
-                        }}
-                      />
-                      <FormControlLabel
-                        classes={{
-                          label: classes.label
-                        }}
-                        control={
-                          <Checkbox
-                            tabIndex={-1}
-                            onClick={() => handleToggle(1)}
-                            checkedIcon={<Check className={classes.checkedIcon} />}
-                            icon={<Check className={classes.uncheckedIcon} />}
-                            classes={{
-                              checked: classes.checked,
-                              root: classes.checkRoot
+                      <GridContainer>
+                        <GridItem xs={12} sm={6} md={6} lg={4}>
+                          <CustomInput
+                            formControlProps={{
+                              fullWidth: true,
+                              className: classes.customFormControlClasses
+                            }}
+                            inputProps={{
+                              placeholder: 'En(cm)'
                             }}
                           />
-                        }
-                        label={
-                          <span>
-                            I agree to the <a href="#pablo">terms and conditions</a>.
-                          </span>
-                        }
-                      />
-                      <div className={classes.textCenter}>
-                        <Button round color="primary">
-                          Get started
-                        </Button>
-                      </div>
+                        </GridItem>
+                        <GridItem xs={12} sm={6} md={6} lg={4}>
+                          <CustomInput
+                            formControlProps={{
+                              fullWidth: true,
+                              className: classes.customFormControlClasses
+                            }}
+                            inputProps={{
+                              placeholder: 'Boy(cm)'
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={6} md={6} lg={4}>
+                          <CustomInput
+                            formControlProps={{
+                              fullWidth: true,
+                              className: classes.customFormControlClasses
+                            }}
+                            inputProps={{
+                              placeholder: 'Kalınlık(mm)'
+                            }}
+                          />
+                        </GridItem>
+                      </GridContainer>
+                      <GridContainer>
+                        <GridItem xs={12} sm={6} md={6} lg={4}>
+                          <div
+                            className={
+                              classes.checkboxAndRadio + ' ' + classes.checkboxAndRadioHorizontal
+                            }
+                          >
+                            <FormControlLabel
+                              control={
+                                <Radio
+                                  checked={selectedEnabled === 'a'}
+                                  onChange={() => setSelectedEnabled('a')}
+                                  value="a"
+                                  name="radio button enabled"
+                                  aria-label="A"
+                                  icon={<FiberManualRecord className={classes.radioUnchecked} />}
+                                  checkedIcon={
+                                    <FiberManualRecord className={classes.radioChecked} />
+                                  }
+                                  classes={{
+                                    checked: classes.radio,
+                                    root: classes.radioRoot
+                                  }}
+                                />
+                              }
+                              classes={{
+                                label: classes.label,
+                                root: classes.labelRoot
+                              }}
+                              label="A/B Kalite"
+                            />
+                          </div>
+                        </GridItem>
+                        <GridItem xs={12} sm={6} md={6} lg={4}>
+                          <div
+                            className={
+                              classes.checkboxAndRadio + ' ' + classes.checkboxAndRadioHorizontal
+                            }
+                          >
+                            <FormControlLabel
+                              control={
+                                <Radio
+                                  checked={selectedEnabled === 'b'}
+                                  onChange={() => setSelectedEnabled('b')}
+                                  value="b"
+                                  name="radio button enabled"
+                                  aria-label="B"
+                                  icon={<FiberManualRecord className={classes.radioUnchecked} />}
+                                  checkedIcon={
+                                    <FiberManualRecord className={classes.radioChecked} />
+                                  }
+                                  classes={{
+                                    checked: classes.radio,
+                                    root: classes.radioRoot
+                                  }}
+                                />
+                              }
+                              classes={{
+                                label: classes.label,
+                                root: classes.labelRoot
+                              }}
+                              label="B/B Kalite"
+                            />
+                          </div>
+                        </GridItem>
+                        <GridItem xs={12} sm={6} md={6} lg={4}>
+                          <div
+                            className={
+                              classes.checkboxAndRadio + ' ' + classes.checkboxAndRadioHorizontal
+                            }
+                          >
+                            {/*//TODO Check it later*/}
+                            <FormControlLabel
+                              control={
+                                <Radio
+                                  checked={selectedEnabled === 'a'}
+                                  onChange={() => setSelectedEnabled('a')}
+                                  value="a"
+                                  name="radio button enabled"
+                                  aria-label="A"
+                                  icon={<FiberManualRecord className={classes.radioUnchecked} />}
+                                  checkedIcon={
+                                    <FiberManualRecord className={classes.radioChecked} />
+                                  }
+                                  classes={{
+                                    checked: classes.radio,
+                                    root: classes.radioRoot
+                                  }}
+                                />
+                              }
+                              classes={{
+                                label: classes.label,
+                                root: classes.labelRoot
+                              }}
+                              label="C/C Kalite"
+                            />
+                          </div>
+                        </GridItem>
+                      </GridContainer>
+                      <GridContainer>
+                        <GridItem xs={12} sm={6} md={6} lg={6}>
+                          <CustomInput
+                            formControlProps={{
+                              fullWidth: true,
+                              className: classes.customFormControlClasses
+                            }}
+                            inputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start" className={classes.inputAdornment}>
+                                  <Equalizer className={classes.inputAdornmentIcon} />
+                                </InputAdornment>
+                              ),
+                              placeholder: 'Adet'
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={6} md={6} lg={6}>
+                          <CustomInput
+                            formControlProps={{
+                              fullWidth: true,
+                              className: classes.customFormControlClasses
+                            }}
+                            inputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start" className={classes.inputAdornment}>
+                                  <TrendingDown className={classes.inputAdornmentIcon} />
+                                </InputAdornment>
+                              ),
+                              placeholder: 'İskonto'
+                            }}
+                          />
+                        </GridItem>
+                      </GridContainer>
+                      <GridContainer>
+                        <GridItem xs={12} sm={6} md={6} lg={6}>
+                          <div className={classes.textCenter}>
+                            <Button round color="rose">
+                              Hafızaya Ekle
+                            </Button>
+                          </div>
+                        </GridItem>
+                        <GridItem xs={12} sm={6} md={6} lg={6}>
+                          <div className={classes.textCenter}>
+                            <Button round color="primary">
+                              &nbsp;&nbsp;&nbsp;&nbsp; Hesapla &nbsp; &nbsp;&nbsp;&nbsp;
+                            </Button>
+                          </div>
+                        </GridItem>
+                      </GridContainer>
                     </form>
+                    <GridContainer>
+                      <GridItem xs={12} sm={12} md={12}>
+                        <GridContainer>
+                          <GridItem xs={12} sm={12} md={6}>
+                            <Card blog>
+                              <CardHeader image>
+                                <a href="#pablo" onClick={e => e.preventDefault()}>
+                                  <img
+                                    src={`http://34.65.244.159:3000${wood[1].imgAB}`}
+                                    alt="..."
+                                  />
+                                </a>
+                                <div
+                                  className={classes.coloredShadow}
+                                  style={{
+                                    backgroundImage: `url(http://34.65.244.159:3000${wood[1].imgAB})`,
+                                    opacity: '1'
+                                  }}
+                                />
+                              </CardHeader>
+                              <CardBody>
+                                <Warning>
+                                  <h6 className={classes.cardCategory}>A/B Kalite</h6>
+                                </Warning>
+                              </CardBody>
+                            </Card>
+                          </GridItem>
+                          <GridItem xs={12} sm={12} md={6}>
+                            <Card blog>
+                              <CardHeader image>
+                                <a href="#pablo" onClick={e => e.preventDefault()}>
+                                  <img
+                                    src={
+                                      wood[1].imgBB
+                                        ? `http://34.65.244.159:3000${wood[1].imgBB}`
+                                        : `http://34.65.244.159:3000${wood[1].imgAB}`
+                                    }
+                                  />
+                                </a>
+                                <div
+                                  className={classes.coloredShadow}
+                                  style={{
+                                    backgroundImage: `url(http://34.65.244.159:3000${wood[1].imgAB})`,
+                                    opacity: '1'
+                                  }}
+                                />
+                              </CardHeader>
+                              <CardBody>
+                                <Warning>
+                                  <h6 className={classes.cardCategory}>B/B Kalite</h6>
+                                </Warning>
+                              </CardBody>
+                            </Card>
+                          </GridItem>
+                        </GridContainer>
+                      </GridItem>
+                    </GridContainer>
                   </GridItem>
                 </GridContainer>
+                <hr />
               </DialogContent>
             </Card>
           </Dialog>
-          {/* SIGNUP MODAL END */}
         </GridItem>
       )}
     </>
