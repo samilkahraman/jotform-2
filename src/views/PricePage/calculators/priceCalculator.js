@@ -87,7 +87,7 @@ export const sitelerMasifPanelFiyatHesaplayici = woodObj => {
   let result =
     price * ((woodObj.boy * woodObj.en) / 10000) * woodObj.adet * ((100 - woodObj.iskonto) / 100);
 
-  woodObj.price = result;
+  woodObj.price = result.toFixed(2);
 
   return woodObj;
 };
