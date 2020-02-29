@@ -33,7 +33,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function SectionCategories(props) {
   const { wood } = props;
-  console.log(wood);
   const [notClicked, setNotClicked] = useState(true);
   const [simpleSelect, setSimpleSelect] = React.useState('');
 

@@ -1,57 +1,34 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes, { func } from 'prop-types';
+
 // @material-ui/icons
 // core components
 import Card from 'components/Card/Card.js';
 import CardBody from 'components/Card/CardBody.js';
-import Badge from 'components/Badge/Badge.js';
-import { Link } from 'react-router-dom';
 import javascriptStyles from 'assets/jss/material-kit-pro-react/views/componentsSections/javascriptStyles.js';
 import Slide from '@material-ui/core/Slide';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
+
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import MenuItem from '@material-ui/core/MenuItem';
-import Warning from 'components/Typography/Warning.js';
+
 import TagsInput from 'react-tagsinput';
 
-import Icon from '@material-ui/core/Icon';
-// @material-ui/icons
-import Close from '@material-ui/icons/Close';
-import Face from '@material-ui/icons/Face';
-import Timeline from '@material-ui/icons/Timeline';
-import Code from '@material-ui/icons/Code';
-import Group from '@material-ui/icons/Group';
-import Email from '@material-ui/icons/Email';
 import TrendingDown from '@material-ui/icons/TrendingDown';
 import Equalizer from '@material-ui/icons/Equalizer';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import DragHandle from '@material-ui/icons/DragHandle';
-import color1 from 'assets/img/examples/color1.jpg';
-import CardHeader from 'components/Card/CardHeader.js';
 
-import Check from '@material-ui/icons/Check';
 // core components
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
 import Button from 'components/CustomButtons/Button.js';
 import CustomInput from 'components/CustomInput/CustomInput.js';
-import InfoArea from 'components/InfoArea/InfoArea.js';
 import { whiteColor } from 'assets/jss/material-kit-pro-react';
-import CustomDropdown from 'components/CustomDropdown/CustomDropdown.js';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
 import Radio from '@material-ui/core/Radio';
 import Switch from '@material-ui/core/Switch';
 import FiberManualRecord from '@material-ui/icons/FiberManualRecord';
-import Small from 'components/Typography/Small';
 
 import * as calc from '../calculators/priceCalculator';
 const useStyles = makeStyles(javascriptStyles);
@@ -64,7 +41,6 @@ export default function PriceDetail(props) {
   const { wood } = props;
   const [clear, setClear] = useState(false);
   const [currentPrice, setCurrentPrice] = useState(100);
-  const [add, setAdd] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [tags, setTags] = React.useState([]);
   const [en, setEn] = useState(121);
@@ -86,14 +62,12 @@ export default function PriceDetail(props) {
     boyEkliMi: true
   });
   useEffect(() => {
-    console.log(product);
     let result = calc.sitelerMasifPanelFiyatHesaplayici(product);
     setCurrentPrice(result.price);
   }, [product]);
   useEffect(() => {
     let temp = allStorage();
     let temp2 = [];
-    console.log(temp);
     temp.map(el => {
       temp2.push(
         el.isim +
@@ -116,7 +90,6 @@ export default function PriceDetail(props) {
   useEffect(() => {
     let temp = allStorage();
     let temp2 = [];
-    console.log(temp);
     temp.map(el => {
       temp2.push(
         el.isim +
@@ -142,9 +115,7 @@ export default function PriceDetail(props) {
       i = keys.length;
 
     while (i--) {
-      console.log(i);
       values = values + parseFloat(JSON.parse(localStorage.getItem(keys[i])).price);
-      console.log(values, i);
     }
     setTotalPrice(values);
     //setTotalPrice(values);
@@ -174,13 +145,11 @@ export default function PriceDetail(props) {
   }
 
   const handleTags = e => {
-    console.log(e);
     localStorage.setItem(makeid(9), JSON.stringify(product));
     const items = { ...localStorage };
 
     let temp = allStorage();
     let temp2 = [];
-    console.log(temp);
     temp.map(el => {
       temp2.push(
         el.isim +
@@ -198,8 +167,6 @@ export default function PriceDetail(props) {
       );
     });
     setTags(temp2);
-
-    console.log(items, temp);
   };
   const totalPrices = () => {
     let values = 0,
@@ -209,8 +176,6 @@ export default function PriceDetail(props) {
     while (i--) {
       values = values + JSON.parse(localStorage.getItem(keys[i]).price);
     }
-    console.log(values);
-    console.log('values');
     setTotalPrice(values);
   };
   const handleSubmit = evt => {
