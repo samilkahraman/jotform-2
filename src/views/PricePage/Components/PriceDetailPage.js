@@ -1,8 +1,7 @@
 /*eslint-disable*/
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
+import PropTypes, { func } from 'prop-types';
 // @material-ui/icons
 // core components
 import Card from 'components/Card/Card.js';
@@ -62,26 +61,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function PriceDetail(props) {
   const { wood } = props;
-  const [currentPrice, setCurrentPrice] = useState(100);
-  console.log(wood);
-  const [simpleSelect, setSimpleSelect] = React.useState('');
-  const [checkedA, setCheckedA] = React.useState(true);
-
-  const [selectedEnabled, setSelectedEnabled] = React.useState('b');
-  const [checked, setChecked] = React.useState([24, 22]);
-  const handleToggle = value => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    setChecked(newChecked);
-  };
   const [product, setProduct] = useState({
-    en: 120,
+    en: 121,
     boy: 305,
     kalinlik: 18,
     kalite: 'A/B',
@@ -91,11 +72,39 @@ export default function PriceDetail(props) {
     detaylari: wood[1],
     boyEkliMi: true
   });
-  const calculate = () => {};
+  useEffect(() => {
+    console.log(product);
+    let result = calc.sitelerMasifPanelFiyatHesaplayici(product);
 
-  function handleChange(event) {
-    console.log(event);
-  }
+    setCurrentPrice(result.price.toFixed(2));
+  }, [product]);
+  const [currentPrice, setCurrentPrice] = useState(100);
+  console.log(wood);
+
+  const [checked, setChecked] = React.useState([24, 22]);
+
+  const [en, setEn] = useState(121);
+  const [boy, setBoy] = useState(305);
+  const [kalinlik, setKalinlik] = useState(18);
+  const [kalite, setKalite] = useState('A/B');
+  const [adet, setAdet] = useState(1);
+  const [iskonto, setIskonto] = useState(0);
+  const [boyEkliMi, setBoyEkliMi] = useState(true);
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    setProduct({
+      en: en,
+      boy: boy,
+      kalinlik: kalinlik,
+      adet: adet,
+      iskonto: iskonto,
+      kalite: kalite,
+      boyEkliMi: boyEkliMi,
+      isim: wood[0],
+      detaylari: wood[1]
+    });
+  };
   const classes = useStyles();
 
   return (
@@ -146,7 +155,7 @@ export default function PriceDetail(props) {
           <br />
           <br />
         </div>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <GridContainer>
             <GridItem xs={12} sm={6} md={6} lg={4}>
               <CustomInput
@@ -162,8 +171,9 @@ export default function PriceDetail(props) {
                   ),
                   placeholder: 'En(cm)'
                 }}
-                value={product.en}
-                onChange={handleChange()}
+                type="number"
+                value={en}
+                onChange={e => setEn(parseInt(e.target.value))}
               />
             </GridItem>
             <GridItem xs={12} sm={6} md={6} lg={4}>
@@ -180,6 +190,8 @@ export default function PriceDetail(props) {
                   ),
                   placeholder: 'Boy(cm)'
                 }}
+                value={boy}
+                onChange={e => setBoy(parseInt(e.target.value))}
               />
             </GridItem>
             <GridItem xs={12} sm={6} md={6} lg={4}>
@@ -196,6 +208,8 @@ export default function PriceDetail(props) {
                   ),
                   placeholder: 'Kalın(mm)'
                 }}
+                value={kalinlik}
+                onChange={e => setKalinlik(parseInt(e.target.value))}
               />
             </GridItem>
           </GridContainer>
@@ -206,9 +220,9 @@ export default function PriceDetail(props) {
                 <FormControlLabel
                   control={
                     <Radio
-                      checked={selectedEnabled === 'a'}
-                      onChange={() => setSelectedEnabled('a')}
-                      value="a"
+                      checked={kalite === 'A/B'}
+                      onChange={() => setKalite('A/B')}
+                      value={kalite}
                       name="radio button enabled"
                       aria-label="A"
                       icon={<FiberManualRecord className={classes.radioUnchecked} />}
@@ -232,9 +246,9 @@ export default function PriceDetail(props) {
                 <FormControlLabel
                   control={
                     <Radio
-                      checked={selectedEnabled === 'b'}
-                      onChange={() => setSelectedEnabled('b')}
-                      value="b"
+                      checked={kalite === 'B/B'}
+                      onChange={() => setKalite('B/B')}
+                      value={kalite}
                       name="radio button enabled"
                       aria-label="B"
                       icon={<FiberManualRecord className={classes.radioUnchecked} />}
@@ -258,9 +272,9 @@ export default function PriceDetail(props) {
                 <FormControlLabel
                   control={
                     <Radio
-                      checked={selectedEnabled === 'a'}
-                      onChange={() => setSelectedEnabled('a')}
-                      value="a"
+                      checked={kalite === 'C/C'}
+                      onChange={() => setKalite('C/C')}
+                      value={kalite}
                       name="radio button enabled"
                       aria-label="A"
                       icon={<FiberManualRecord className={classes.radioUnchecked} />}
@@ -296,6 +310,8 @@ export default function PriceDetail(props) {
                   ),
                   placeholder: 'Adet'
                 }}
+                onChange={e => setAdet(parseInt(e.target.value))}
+                value={adet}
               />
             </GridItem>
             <GridItem xs={12} sm={6} md={6} lg={6}>
@@ -312,6 +328,8 @@ export default function PriceDetail(props) {
                   ),
                   placeholder: 'İskonto'
                 }}
+                onChange={e => setIskonto(parseInt(e.target.value))}
+                value={iskonto}
               />
             </GridItem>
           </GridContainer>
@@ -320,9 +338,9 @@ export default function PriceDetail(props) {
           <FormControlLabel
             control={
               <Switch
-                checked={checkedA}
-                onChange={event => setCheckedA(event.target.checked)}
-                value="checkedA"
+                checked={boyEkliMi}
+                onChange={event => setBoyEkliMi(event.target.checked)}
+                value={boyEkliMi}
                 classes={{
                   switchBase: classes.switchBase,
                   checked: classes.switchChecked,
@@ -349,7 +367,7 @@ export default function PriceDetail(props) {
             </GridItem>
             <GridItem xs={12} sm={6} md={6} lg={6}>
               <div className={classes.textCenter}>
-                <Button round color="primary" onClick={calculate()}>
+                <Button round color="primary" type="submit">
                   &nbsp;&nbsp;&nbsp;&nbsp; Hesapla &nbsp; &nbsp;&nbsp;&nbsp;
                 </Button>
               </div>
@@ -358,7 +376,6 @@ export default function PriceDetail(props) {
         </form>
       </GridItem>
       <hr />
-      {/*//TODO fix the position */}
       <GridContainer>
         <GridItem xs={12} sm={12} md={10}>
           <GridContainer>

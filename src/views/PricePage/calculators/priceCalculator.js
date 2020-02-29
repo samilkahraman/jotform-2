@@ -20,15 +20,25 @@ export const sitelerMasifPanelFiyatHesaplayici = woodObj => {
   let price = 0;
   if (woodObj.boyEkliMi) {
     if (woodObj.kalite === 'A/B') {
-      if (woodObj.kalinlik === 18) {
+      if (
+        woodObj.kalinlik === 18 ||
+        woodObj.kalinlik === 16 ||
+        woodObj.kalinlik === 14 ||
+        woodObj.kalinlik === 20
+      ) {
         price = woodObj.detaylari.boyEkli['18'].ab.price;
-      } else if (woodObj.kalinlik === 28) {
+      } else if (woodObj.kalinlik === 25 || woodObj.kalinlik === 26 || woodObj.kalinlik === 28) {
         price = woodObj.detaylari.boyEkli['28'].ab.price;
       } else {
         price = woodObj.detaylari.boyEkli['40'].ab.price;
       }
     } else if (woodObj.kalite === 'B/B') {
-      if (woodObj.kalinlik === 18) {
+      if (
+        woodObj.kalinlik === 18 ||
+        woodObj.kalinlik === 16 ||
+        woodObj.kalinlik === 14 ||
+        woodObj.kalinlik === 20
+      ) {
         price = woodObj.detaylari.boyEkli['18'].bb.price;
       } else if (woodObj.kalinlik === 28) {
         price = woodObj.detaylari.boyEkli['28'].bb.price;
@@ -39,27 +49,43 @@ export const sitelerMasifPanelFiyatHesaplayici = woodObj => {
     }
   } else {
     if (woodObj.kalite === 'A/B') {
-      if (woodObj.kalinlik === 18) {
-        price = woodObj.detaylari.boyEkli['18'].ab.price;
+      if (
+        woodObj.kalinlik === 18 ||
+        woodObj.kalinlik === 16 ||
+        woodObj.kalinlik === 14 ||
+        woodObj.kalinlik === 20
+      ) {
+        price = woodObj.detaylari.boyEksiz['18'].ab.price;
       } else if (woodObj.kalinlik === 28) {
-        price = woodObj.detaylari.boyEkli['28'].ab.price;
+        price = woodObj.detaylari.boyEksiz['28'].ab.price;
       } else {
-        price = woodObj.detaylari.boyEkli['40'].ab.price;
+        price = woodObj.detaylari.boyEksiz['40'].ab.price;
       }
     } else if (woodObj.kalite === 'B/B') {
-      if (woodObj.kalinlik === 18) {
-        price = woodObj.detaylari.boyEkli['18'].bb.price;
+      if (
+        woodObj.kalinlik === 18 ||
+        woodObj.kalinlik === 16 ||
+        woodObj.kalinlik === 14 ||
+        woodObj.kalinlik === 20
+      ) {
+        price = woodObj.detaylari.boyEksiz['18'].bb.price;
       } else if (woodObj.kalinlik === 28) {
-        price = woodObj.detaylari.boyEkli['28'].bb.price;
+        price = woodObj.detaylari.boyEksiz['28'].bb.price;
       } else {
-        price = woodObj.detaylari.boyEkli['40'].bb.price;
+        if (woodObj.kalinlik === 30 && woodObj.isim === 'ladin')
+          price = woodObj.detaylari.boyEksiz['30'].bb.price;
+        else price = woodObj.detaylari.boyEksiz['40'].bb.price;
       }
     } else {
     }
   }
+  console.log(woodObj.boy, woodObj.en);
+
+  console.log(price, (woodObj.boy * woodObj.en) / 10000);
+  console.log((100 - woodObj.iskonto) / 100);
 
   let result =
-    price * ((woodObj.adet * woodObj.en) / 10000) * woodObj.boy * ((100 - woodObj.iskonto) / 100);
+    price * ((woodObj.boy * woodObj.en) / 10000) * woodObj.adet * ((100 - woodObj.iskonto) / 100);
 
   woodObj.price = result;
 

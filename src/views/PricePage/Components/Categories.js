@@ -12,7 +12,7 @@ import Card from 'components/Card/Card.js';
 import CardBody from 'components/Card/CardBody.js';
 import Badge from 'components/Badge/Badge.js';
 import Clearfix from 'components/Clearfix/Clearfix.js';
-import clemOnojeghuo from 'assets/img/examples/clem-onojeghuo.jpg';
+import clemOnojeghuo from 'assets/img/urunler.jpg';
 
 import profilePageStyle from 'assets/jss/material-kit-pro-react/views/profilePageStyle.js';
 
