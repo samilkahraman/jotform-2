@@ -51,7 +51,7 @@ export default function SectionCategories(props) {
           <Card
             background
             style={{
-              backgroundImage: `url(http://34.65.244.159:3000${wood[1].imgAB})`
+              backgroundImage: `url(http://34.65.59.53:3000${wood[1].imgAB})`
             }}
             onClick={() => setNotClicked(false)}
           >

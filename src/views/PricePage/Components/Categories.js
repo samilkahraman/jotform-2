@@ -25,7 +25,7 @@ const useStyles = makeStyles(profilePageStyle);
 export default function Categories() {
   const [panels, setPanels] = useState([]);
   const [fingerJointsStatus, setFingerJointsStatus] = useState(false);
-  const url = 'http://34.65.244.159:3000/';
+  const url = 'http://34.65.59.53:3000/';
   // const id = '200261686124045';
   // const key = 'c47b317e13a455fd869b360b993c5198';
 
