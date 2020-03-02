@@ -81,17 +81,55 @@ export const sitelerMasifPanelFiyatHesaplayici = woodObj => {
   }
 
   let result =
-    price * ((woodObj.boy * woodObj.en) / 10000) * woodObj.adet * ((100 - woodObj.iskonto) / 100);
+    price *
+    ((woodObj.boy * woodObj.en) / 10000) *
+    woodObj.adet *
+    ((100 - woodObj.iskonto) / 100) *
+    1.18;
 
   woodObj.price = result.toFixed(2);
 
   return woodObj;
 };
 
-export const ahsaplarMasifPanelFiyatHesaplayici = woodObj => {
-  return fetch(url, { method: 'DELETE' });
+export const ahsaplarMasifPanelFiyatHesaplayici = (en, boy, kalinlik, price) => {
+  const pieceLabor = 5;
+  const m2material = 6;
+  const cutting = 6;
+  const shipping = 1.85;
+  const iyzico = 1.03;
+  const m2 = (en * boy) / 10000;
+  console.log(en, boy, kalinlik);
+  console.log(((en * boy * (kalinlik / 10)) / 3000) * shipping);
+  const finalAdds =
+    pieceLabor + m2 * m2material + cutting + ((en * boy * (kalinlik / 10)) / 3000) * shipping;
+
+  console.log(finalAdds);
+
+  console.log(typeof price);
+  const result = (parseFloat(price) + finalAdds * 1.18) * iyzico;
+  console.log(result);
+
+  return result.toFixed(2);
 };
 
-export const n11MasifPanelFiyatHesaplayici = woodObj => {
-  return fetch(url, { method: 'DELETE' });
+export const n11MasifPanelFiyatHesaplayici = (en, boy, kalinlik, price) => {
+  const pieceLabor = 5;
+  const m2material = 6;
+  const cutting = 6;
+  const shipping = 1.85;
+  const iyzico = 1.03;
+  const m2 = (en * boy) / 10000;
+  console.log(en, boy, kalinlik);
+  console.log(((en * boy * (kalinlik / 10)) / 3000) * shipping);
+  const finalAdds =
+    pieceLabor + m2 * m2material + cutting + ((en * boy * (kalinlik / 10)) / 3000) * shipping;
+
+  console.log(finalAdds);
+
+  console.log(typeof price);
+  const result = (parseFloat(price) + finalAdds * 1.18) * 1.21;
+  console.log(result);
+
+  return result.toFixed(2);
 };

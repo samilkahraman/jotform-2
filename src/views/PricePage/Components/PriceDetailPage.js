@@ -43,16 +43,16 @@ export default function PriceDetail(props) {
   const [currentPrice, setCurrentPrice] = useState(100);
   const [totalPrice, setTotalPrice] = useState(0);
   const [tags, setTags] = React.useState([]);
-  const [en, setEn] = useState(121);
-  const [boy, setBoy] = useState(305);
+  const [en, setEn] = useState(100);
+  const [boy, setBoy] = useState(100);
   const [kalinlik, setKalinlik] = useState(18);
   const [kalite, setKalite] = useState('A/B');
   const [adet, setAdet] = useState(1);
   const [iskonto, setIskonto] = useState(0);
   const [boyEkliMi, setBoyEkliMi] = useState(true);
   const [product, setProduct] = useState({
-    en: 121,
-    boy: 305,
+    en: 100,
+    boy: 100,
     kalinlik: 18,
     kalite: 'A/B',
     adet: 1,
@@ -217,24 +217,59 @@ export default function PriceDetail(props) {
                 className={classes.cardTitleWhite}
                 style={{ color: whiteColor, textAlign: 'center' }}
               >
-                {currentPrice}
+                {calc.ahsaplarMasifPanelFiyatHesaplayici(
+                  product.en,
+                  product.boy,
+                  product.kalinlik,
+                  currentPrice
+                )}
                 <strong>₺</strong>
               </h2>
             </CardBody>
           </Card>
-          <Card color="danger">
+          <Card color="rose">
             <CardBody color>
               <h5 className={classes.cardCategorySocialWhite}>N11.com Satış Ücreti</h5>
               <h2
                 className={classes.cardTitleWhite}
                 style={{ color: whiteColor, textAlign: 'center' }}
               >
-                {currentPrice}
+                {calc.n11MasifPanelFiyatHesaplayici(
+                  product.en,
+                  product.boy,
+                  product.kalinlik,
+                  currentPrice
+                )}
                 <strong>₺</strong>
               </h2>
             </CardBody>
           </Card>
+
+          <GridItem xs={12} sm={12} md={12}>
+            <div className={classes.title}>
+              <h3>Hafızadaki Ürünler = {totalPrice}₺</h3>
+            </div>
+            <TagsInput
+              value={tags}
+              onChange={handleTags}
+              tagProps={{ className: 'react-tagsinput-tag rose' }}
+            />
+          </GridItem>
+
+          <GridItem xs={12} sm={6} md={6}>
+            <Button
+              round
+              color="default"
+              onClick={() => {
+                localStorage.clear();
+                setClear(clear => !clear);
+              }}
+            >
+              Hafızayı Temizle
+            </Button>
+          </GridItem>
         </GridItem>
+
         <GridItem xs={12} sm={5} md={5} className={classes.mrAuto}>
           <div className={classes.textCenter}>
             {` `}
@@ -461,42 +496,13 @@ export default function PriceDetail(props) {
               </GridItem>
               <GridItem xs={12} sm={6} md={6} lg={6}>
                 <div className={classes.textCenter}>
-                  <Button round color="primary" type="submit">
+                  <Button round color="info" type="submit">
                     &nbsp;&nbsp;&nbsp;&nbsp; Hesapla &nbsp; &nbsp;&nbsp;&nbsp;
                   </Button>
                 </div>
               </GridItem>
             </GridContainer>
           </form>
-        </GridItem>
-        <GridItem xs={12} sm={1} md={1} lg={1} className={classes.mrAuto}></GridItem>
-
-        <GridItem xs={12} sm={8} md={8} className={classes.mrAuto}>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-              <div className={classes.title}>
-                <h3>Hafızadaki Ürünler = {totalPrice}₺</h3>
-              </div>
-              <TagsInput
-                value={tags}
-                onChange={handleTags}
-                tagProps={{ className: 'react-tagsinput-tag rose' }}
-              />
-            </GridItem>
-
-            <GridItem xs={12} sm={6} md={6}>
-              <Button
-                round
-                color="info"
-                onClick={() => {
-                  localStorage.clear();
-                  setClear(clear => !clear);
-                }}
-              >
-                Hafızayı Temizle
-              </Button>
-            </GridItem>
-          </GridContainer>
         </GridItem>
       </GridContainer>
     </>
