@@ -55,10 +55,10 @@ export default function Categories() {
                 >
                   <CardBody background className={classes.cardBody}>
                     <Badge color="info" className={classes.badge}>
-                      Son Güncelleme 27/02/2020
+                      For Admins
                     </Badge>
                     <a href="#">
-                      <h2 className={classes.cardTitleWhite}>Masif Panel Fiyat Hesaplayıcı</h2>
+                      <h2 className={classes.cardTitleWhite}>Price Calculator</h2>
                     </a>
                   </CardBody>
                 </Card>

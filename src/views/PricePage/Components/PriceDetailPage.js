@@ -200,7 +200,7 @@ export default function PriceDetail(props) {
         <GridItem xs={12} sm={5} md={5} className={classes.mlAuto}>
           <Card color="info">
             <CardBody color>
-              <h5 className={classes.cardCategorySocialWhite}>Siteler Satış Ücreti</h5>
+              <h5 className={classes.cardCategorySocialWhite}>Buying Price</h5>
               <h2
                 className={classes.cardTitleWhite}
                 style={{ color: whiteColor, textAlign: 'center' }}
@@ -212,7 +212,7 @@ export default function PriceDetail(props) {
           </Card>
           <Card color="success">
             <CardBody color>
-              <h5 className={classes.cardCategorySocialWhite}>Ahsaplar.com Satış Ücreti</h5>
+              <h5 className={classes.cardCategorySocialWhite}>Price without shipment</h5>
               <h2
                 className={classes.cardTitleWhite}
                 style={{ color: whiteColor, textAlign: 'center' }}
@@ -229,7 +229,7 @@ export default function PriceDetail(props) {
           </Card>
           <Card color="rose">
             <CardBody color>
-              <h5 className={classes.cardCategorySocialWhite}>N11.com Satış Ücreti</h5>
+              <h5 className={classes.cardCategorySocialWhite}>Price with shipment</h5>
               <h2
                 className={classes.cardTitleWhite}
                 style={{ color: whiteColor, textAlign: 'center' }}
@@ -247,7 +247,7 @@ export default function PriceDetail(props) {
 
           <GridItem xs={12} sm={12} md={12}>
             <div className={classes.title}>
-              <h3>Hafızadaki Ürünler = {totalPrice}₺</h3>
+              <h3>Products On Memory= {totalPrice}₺</h3>
             </div>
             <TagsInput
               value={tags}
@@ -265,7 +265,7 @@ export default function PriceDetail(props) {
                 setClear(clear => !clear);
               }}
             >
-              Hafızayı Temizle
+              Clear memory
             </Button>
           </GridItem>
         </GridItem>
@@ -274,7 +274,7 @@ export default function PriceDetail(props) {
           <div className={classes.textCenter}>
             {` `}
             <br />
-            <h3 className={classes.socialTitle}>Panel ile ilgili detayları giriniz!</h3>
+            <h3 className={classes.socialTitle}>Spesify Details</h3>
             <br />
             <br />
           </div>
@@ -292,7 +292,7 @@ export default function PriceDetail(props) {
                         <ArrowForward className={classes.inputAdornmentIcon} />
                       </InputAdornment>
                     ),
-                    placeholder: 'En(cm)'
+                    placeholder: 'Width(cm)'
                   }}
                   type="number"
                   value={en}
@@ -311,7 +311,7 @@ export default function PriceDetail(props) {
                         <ArrowUpward className={classes.inputAdornmentIcon} />
                       </InputAdornment>
                     ),
-                    placeholder: 'Boy(cm)'
+                    placeholder: 'Height(cm)'
                   }}
                   value={boy}
                   onChange={e => setBoy(parseInt(e.target.value))}
@@ -329,7 +329,7 @@ export default function PriceDetail(props) {
                         <DragHandle className={classes.inputAdornmentIcon} />
                       </InputAdornment>
                     ),
-                    placeholder: 'Kalın(mm)'
+                    placeholder: 'Thick(mm)'
                   }}
                   value={kalinlik}
                   onChange={e => setKalinlik(parseInt(e.target.value))}
@@ -362,7 +362,7 @@ export default function PriceDetail(props) {
                       label: classes.label,
                       root: classes.labelRoot
                     }}
-                    label="A/B Kalite"
+                    label="A Quality"
                   />
                 </div>
               </GridItem>
@@ -390,7 +390,7 @@ export default function PriceDetail(props) {
                       label: classes.label,
                       root: classes.labelRoot
                     }}
-                    label="B/B Kalite"
+                    label="B Quality"
                   />
                 </div>
               </GridItem>
@@ -418,7 +418,7 @@ export default function PriceDetail(props) {
                       label: classes.label,
                       root: classes.labelRoot
                     }}
-                    label="C/C Kalite"
+                    label="C Quality"
                   />
                 </div>
               </GridItem>
@@ -437,7 +437,7 @@ export default function PriceDetail(props) {
                         <Equalizer className={classes.inputAdornmentIcon} />
                       </InputAdornment>
                     ),
-                    placeholder: 'Adet'
+                    placeholder: 'Number'
                   }}
                   onChange={e => setAdet(parseInt(e.target.value))}
                   value={adet}
@@ -455,7 +455,7 @@ export default function PriceDetail(props) {
                         <TrendingDown className={classes.inputAdornmentIcon} />
                       </InputAdornment>
                     ),
-                    placeholder: 'İskonto'
+                    placeholder: 'Discount'
                   }}
                   onChange={e => setIskonto(parseInt(e.target.value))}
                   value={iskonto}
@@ -482,7 +482,7 @@ export default function PriceDetail(props) {
                 label: classes.label,
                 root: classes.labelRoot
               }}
-              label="Panel Boy Ekli mi?"
+              label="Are you producer?"
             />
             <br />
             <br />
@@ -490,14 +490,14 @@ export default function PriceDetail(props) {
               <GridItem xs={12} sm={6} md={6} lg={6}>
                 <div className={classes.textCenter}>
                   <Button round color="rose" onClick={handleTags}>
-                    Hafızaya Ekle
+                    Add to memory
                   </Button>
                 </div>
               </GridItem>
               <GridItem xs={12} sm={6} md={6} lg={6}>
                 <div className={classes.textCenter}>
                   <Button round color="info" type="submit">
-                    &nbsp;&nbsp;&nbsp;&nbsp; Hesapla &nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp; Calculate &nbsp; &nbsp;&nbsp;&nbsp;
                   </Button>
                 </div>
               </GridItem>

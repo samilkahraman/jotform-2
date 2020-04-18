@@ -29,9 +29,9 @@ export default function PricePage({ ...rest }) {
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem md={8} className={classes.textCenter}>
-              <h1 className={classes.cardTitleWhite}>Fiyat Hesaplama Ekranı</h1>
+              <h1 className={classes.cardTitleWhite}>Price Calculation Screen</h1>
 
-              <h4 className={classes.subtitle}>Test Sürümü</h4>
+              <h4 className={classes.subtitle}>Beta</h4>
               <br />
             </GridItem>
           </GridContainer>

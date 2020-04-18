@@ -18,6 +18,8 @@ import CheckProductPage from 'views/CheckProductPage/CheckProduct';
 import PricePage from 'views/PricePage/PricePage';
 import FingerJointPannels from 'views/PricePage/Components/FingerJointPannels';
 import PriceDetailPage from 'views/PricePage/Components/PriceDetailPage';
+import AddProductPage from 'views/AdminPage/AddProductPage/AddProductPage';
+
 const hist = createBrowserHistory();
 
 ReactDOM.render(
@@ -32,7 +34,8 @@ ReactDOM.render(
       <Route exact path="/dashboard" component={DashboardPage} />
       <Route path="/category/:key/:id" component={CategoryProductsPage} />
       <Route path="/product-detail" component={ProductDetailPage} />
-      <Route path="/admin" component={AdminPage} />
+      <Route exact path="/admin" component={AdminPage} />
+      <Route exact path="/admin/add-product" component={AddProductPage} />
       <Route path="/checkProduct" component={CheckProductPage} />
       <Route path="/finger-joint-pannels" component={FingerJointPannels} />
     </Switch>

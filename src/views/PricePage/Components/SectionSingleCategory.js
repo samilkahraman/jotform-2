@@ -59,7 +59,7 @@ export default function SectionCategories(props) {
               <br />
               <br />
               <Badge color="success" className={classes.badge}>
-                Fiyatlar
+                Prices
               </Badge>
               <a href="#">
                 <h2 className={classes.cardTitleWhite}>{wood[0].length > 1 ? wood[0] : 'sorry'}</h2>
@@ -98,7 +98,7 @@ export default function SectionCategories(props) {
                   <Close className={classes.modalClose} />
                 </Button>
                 <h3 className={classes.cardTitle + ' ' + classes.modalTitle}>
-                  {wood[0].toUpperCase() + ' Masif Panel'}{' '}
+                  {wood[0].toUpperCase() + 'Product'}{' '}
                 </h3>
               </DialogTitle>
               <DialogContent id="signup-modal-slide-description" className={classes.modalBody}>
